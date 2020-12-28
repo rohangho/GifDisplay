@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.gifdisplay.R;
 import com.example.gifdisplay.model.AllDatas;
+import com.example.gifdisplay.utility.OnClickAdapter;
 
 public class MyDisplayAdapter extends PagedListAdapter<AllDatas, MyDisplayAdapter.MyViewHolder> {
 
@@ -31,10 +32,12 @@ public class MyDisplayAdapter extends PagedListAdapter<AllDatas, MyDisplayAdapte
                 }
             };
     Context context;
+    OnClickAdapter onClickAdapter;
 
-    public MyDisplayAdapter(Context context) {
+    public MyDisplayAdapter(Context context, OnClickAdapter onClickAdapter) {
         super(DIFF_CALLBACK);
         this.context = context;
+        this.onClickAdapter = onClickAdapter;
     }
 
     @NonNull
@@ -50,13 +53,20 @@ public class MyDisplayAdapter extends PagedListAdapter<AllDatas, MyDisplayAdapte
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.gifDisplayer);
+            imageView.setOnClickListener(this);
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            onClickAdapter.clickedRecycler(getItem(getAdapterPosition()).getImages().getOriginal().getUrl());
         }
     }
 }

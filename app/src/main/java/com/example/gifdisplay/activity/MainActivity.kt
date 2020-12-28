@@ -1,11 +1,13 @@
 package com.example.gifdisplay.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gifdisplay.R
 import com.example.gifdisplay.adapter.MyDisplayAdapter
+import com.example.gifdisplay.utility.OnClickAdapter
 import com.example.gifdisplay.viewModel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +20,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recycleDisplayer = findViewById(R.id.displayer)
-        myDisplayAdapter = MyDisplayAdapter(this)
+        myDisplayAdapter = MyDisplayAdapter(this, object : OnClickAdapter {
+            override fun clickedRecycler(url: String) {
+                startActivity(Intent(applicationContext, GifFullDisplayer::class.java).putExtra("url", url))
+            }
+
+        })
 
         recycleDisplayer.adapter = myDisplayAdapter
 

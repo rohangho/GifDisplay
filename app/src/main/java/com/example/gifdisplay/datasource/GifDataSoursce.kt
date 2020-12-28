@@ -1,5 +1,6 @@
 package com.example.gifdisplay.datasource
 
+import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.example.gifdisplay.model.AllDatas
 import com.example.gifdisplay.model.BaseResponse
@@ -26,10 +27,11 @@ class GifDataSoursce : PageKeyedDataSource<Int, AllDatas>() {
                     if (response.isSuccessful) {
                         callback.onResult(response.body()!!.data!!, null, 1)
                     }
+
                 }
 
                 override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Log.e("Hiii", t.toString())
                 }
             }
             )
@@ -53,7 +55,7 @@ class GifDataSoursce : PageKeyedDataSource<Int, AllDatas>() {
                 }
 
                 override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Log.e("Hiii", t.toString())
                 }
             }
             )

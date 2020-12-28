@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         recycleDisplayer = findViewById(R.id.displayer)
         myDisplayAdapter = MyDisplayAdapter(this)
+
+        recycleDisplayer.adapter = myDisplayAdapter
+
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.init()
         mainViewModel.getArticleLiveData().observe(this, {

@@ -46,8 +46,9 @@ public class MyDisplayAdapter extends PagedListAdapter<AllDatas, MyDisplayAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(context).load(getItem(position).getSource()).into(holder.imageView);
+        Glide.with(context).load(getItem(position).getImages().getOriginal().getUrl()).into(holder.imageView);
     }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 

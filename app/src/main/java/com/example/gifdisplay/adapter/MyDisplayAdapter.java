@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import com.bumptech.glide.Glide;
 import com.example.gifdisplay.R;
@@ -49,7 +50,11 @@ public class MyDisplayAdapter extends PagedListAdapter<AllDatas, MyDisplayAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(context).load(getItem(position).getImages().getOriginal().getUrl()).into(holder.imageView);
+        CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(context);
+        circularProgressDrawable.setStrokeWidth(5f);
+        circularProgressDrawable.setCenterRadius(30f);
+        circularProgressDrawable.start();
+        Glide.with(context).load(getItem(position).getImages().getOriginal().getUrl()).placeholder(circularProgressDrawable).into(holder.imageView);
     }
 
 

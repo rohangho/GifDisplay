@@ -17,8 +17,8 @@ class MainViewModel : ViewModel() {
         val mainRepository = MainRepository()
 
         val pagedListConfig = PagedList.Config.Builder()
-            .setEnablePlaceholders(false)
-            .setPageSize(10).build()
+                .setEnablePlaceholders(false)
+                .setPageSize(25).build()
 
         //Building the paged list
         allGifs = LivePagedListBuilder(mainRepository, pagedListConfig)

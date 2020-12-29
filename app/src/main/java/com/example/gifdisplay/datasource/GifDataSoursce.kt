@@ -18,7 +18,7 @@ class GifDataSoursce : PageKeyedDataSource<Int, AllDatas>() {
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, AllDatas>
     ) {
-        retrofitObj.getAllTrendingGif(key, 10, 0)
+        retrofitObj.getAllTrendingGif(key, 25, 0)
             .enqueue(object : retrofit2.Callback<BaseResponse> {
                 override fun onResponse(
                     call: Call<BaseResponse>,
